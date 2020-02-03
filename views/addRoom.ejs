@@ -1,0 +1,43 @@
+<%- include('./partials/header'); -%>
+    <% var hotelUrl=hotelName.replace(" ","-"); %>
+        <a href="/hotel/<%=hotelUrl%>/rooms"><button class="btn btn-primary" style="margin-left: 3%; margin-top: 3%;">
+        < Back</button> <br></a>
+        <h1 style="margin-left: 11%; margin-top:2% "> Add room to
+            <%=hotelName %>
+        </h1>
+        <div class="container p-4" style="margin-top:60px; margin-bottom:120px; border: 1px solid black; border-radius: 10px; box-shadow:5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);">
+            <form id="myform">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputFloor">Enter Room Floor</label>
+                        <input type="number" min="1" max="10" name="inputFloor" id="inputFloor" class="form-control required" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputRoomType">Select Room Type</label>
+                        <select name="inputRoomType" id="inputRoomType" class="form-control required" required>
+                         <option disabled selected value style="display:none;">Select</option>
+                        <% for(i = 0 ; i<roomTypes.length ; i++ ) { %>
+                         <option><%= roomTypes[i].RoomTypeName %></option>
+                        <% } %>
+                        </select>
+                    </div>
+
+                </div>
+            </form>
+            <button type="submit" id="roomSubmitBtn" class="btn btn-primary">Add</button>
+        </div>
+
+        <p id="roomNumberData" style="display:none;">
+            <% for(i = 0 ; i<rooms.length ; i++ ) { %>
+                <%= rooms[i].RoomNumber%>,
+                    <% } %>
+        </p>
+
+        <p id="hotelUrl" style="display: none;">
+            <%=hotelUrl %>
+        </p>
+
+
+
+        <script type="text/javascript" src="/js/addRoom.js"></script>
+        <%- include('./partials/footer'); -%>

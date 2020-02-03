@@ -1,0 +1,95 @@
+<%- include('./partials/header'); -%>
+    <% var hotelUrl=hotelName.replace(" ","-"); %>
+        <a href="/hotel/<%=hotelUrl%>/bookings"><button class="btn btn-primary" style="margin-left: 3%; margin-top: 3%;">
+        < Back</button> <br></a>
+        <h1 style="margin-left: 11%; margin-top:2% "> Add booking to
+            <%=hotelName %>
+        </h1>
+        <div class="container p-4" style="margin-top:60px; margin-bottom:120px; border: 1px solid black; border-radius: 10px; box-shadow:5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);">
+            <form id="myform">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCustomer">Select Customer</label>
+                        <select name="inputCustomer" id="inputCustomer" class="form-control required" required>
+                    <option disabled selected value style="display:none;">Select Customer</option>
+                    <% for(i = 0 ; i<customers.length ; i++ ) { %>
+                    <% var counter = 0; %>
+                    <% var customerName = ""; %>
+                    <% for(j = 0 ; j<customers.length ; j++ ) { %>
+                    <% if(customers[i].CustomerID == customers[j].CustomerID){ %>
+                    <% customerName += customers[j].FullName + ", "; %>
+                    <% counter++; }} %>
+                    <option>(<%= customerName.substr(0,customerName.length-2) %>)</option>
+                    <% i+=(counter-1)} %>
+                </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputRoomCount">Select Number of Room</label>
+                        <select name="inputRoomCount" id="inputRoomCount" class="form-control required" required>
+                    <option disabled selected value style="display:none;">Select</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                    </div>
+
+                </div>
+
+                <div id="rooms" class="form-row">
+
+                </div>
+                <div id="roomsPrice" class="form-row">
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputDateFrom">Date From</label>
+                        <input class="form-control required" type="date" id="inputDateFrom" name="inputDateFrom" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputDateTo">Date To</label>
+                        <input class="form-control required" type="date" id="inputDateTo" name="inputDateTo" required>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputDescription">Booking Description</label>
+                        <textarea class="form-control " id="inputDescription" name="inputDescription" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <select name="customerID" id="customerID" class="form-control" style="display: none;">
+                <% for(i = 0 ; i<customers.length ; i++ ) { %>
+                <% if(i>0 && customers[i].CustomerID==customers[i-1].CustomerID) continue; %>
+                <option><%= customers[i].CustomerID %></option>
+                <% } %>
+            </select>
+                </div>
+
+            </form>
+            <button type="submit" id="bookingSubmitBtn" class="btn btn-primary">Add</button>
+            <p id="roomErr" style="display: none; color: red;">Change rooms with the same room number!</p>
+            <p id="dateErr" style="display: none; color: red;">Date To must be greater than Date From!</p>
+        </div>
+
+
+
+        <p id="roomNumberData" style="display:none;">
+            <% for(i = 0 ; i<rooms.length ; i++ ) { %>
+                <%= rooms[i].RoomNumber%>,
+                    <% } %>
+        </p>
+
+        <p id="hotelUrl" style="display: none;">
+            <%=hotelUrl %>
+        </p>
+
+
+
+        <script type="text/javascript" src="/js/addBooking.js"></script>
+        <%- include('./partials/footer'); -%>

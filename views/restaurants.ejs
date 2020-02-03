@@ -1,0 +1,61 @@
+<%- include('./partials/header'); -%>
+    <%var hotelurl= hotelName.replace(" ","-") %>
+        <div class="tableContainer">
+            <a href="/hotel/<%=hotelurl%>"><button class="btn btn-primary" style="margin-left: 3%;">
+            < Back</button> <br></a>
+            <h1 style="margin: 5%;">Restaurants of
+                <%=hotelName %>
+            </h1>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Restaurant ID</th>
+                        <th scope="col">Hotel Name</th>
+                        <th scope="col">Restaurant Type</th>
+                        <th scope="col">Restaurant Capacity</th>
+                        <th width="15%" scope="col"><a href="/hotel/<%=hotelurl%>/restaurants/add"><button id="addRestaurantBtn" class="btn btn-primary btn-sm"
+                                    style="float: right;">Add
+                                    Restaurant</button></a></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(i = 0 ; i<restaurants.length ; i++){ %>
+                        <tr>
+                            <th scope="row">
+                                <%=(i+1)%>
+                            </th>
+                            <td>
+                                <%=restaurants[i].RestaurantID %>
+                            </td>
+                            <td>
+                                <%=restaurants[i].HotelName %>
+                            </td>
+                            <td>
+                                <%=restaurants[i].RestaurantType %>
+                            </td>
+                            <td>
+                                <%=restaurants[i].RestaurantCapacity %>
+
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger btn-sm rowButton deleteRestaurant"><i
+                                    class="fa fa-trash"></i></button>
+                                <button type="button" class="btn btn-outline-warning btn-sm rowButton mr-2 editRestaurant"><i
+                                    class="fa fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <% }%>
+                </tbody>
+            </table>
+        </div>
+
+        <p id="hotelUrl" style="display: none;">
+            <%=hotelurl%>
+        </p>
+
+
+
+        <script type="text/javascript" src="/js/restaurants.js"></script>
+        <%- include('./partials/footer'); -%>

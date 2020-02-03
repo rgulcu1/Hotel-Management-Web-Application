@@ -1,0 +1,87 @@
+<%- include('./partials/header'); -%>
+    <%var hotelurl= hotelName.replace(" ","-") %>
+        <div class="tableContainer">
+            <a href="/hotel/<%=hotelurl%>"><button class="btn btn-primary" style="margin-left: 3%;">
+            < Back</button> <br></a>
+            <h1 style="margin: 5%;">Bookings of
+                <%=hotelName %>
+            </h1>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Booking ID</th>
+                        <th scope="col">Hotel Name</th>
+                        <th scope="col">Rooms</th>
+                        <th scope="col">Date From</th>
+                        <th scope="col">Date To</th>
+                        <th scope="col">Total Day</th>
+                        <th scope="col">Total Price</th>
+                        <th width="10%" scope="col"><a href="" id="addBookingLink"><button id="addBookingBtn" class="btn btn-primary btn-sm"
+                                    style="float: right;">Add
+                                    Booking</button></a></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <%var counter = 0;%>
+                        <% for(i = 0 ; i<bookings.length ; i++){ %>
+                            <%counter++;%>
+                                <% var roomNumbers=""; var totalPrice=0; %>
+                                    <% while(true){ %>
+                                        <%roomNumbers += bookings[i].RoomNumber + " "; totalPrice += bookings[i].RoomPrice;%>
+                                            <% if(i==bookings.length-1 || bookings[i].BookingID != bookings[i+1].BookingID) break; %>
+                                                <% i++ } %>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <%=counter%>
+                                                        </th>
+                                                        <td>
+                                                            <%=bookings[i].BookingID %>
+                                                        </td>
+                                                        <td>
+                                                            <%=bookings[i].HotelName %>
+                                                        </td>
+                                                        <td>
+                                                            <%=roomNumbers %>
+                                                        </td>
+                                                        <td>
+                                                            <%var date = new Date(bookings[i].DateFrom);
+                                var dateFrom = date.toISOString().slice(0,10) %>
+                                                                <%=dateFrom%>
+                                                        </td>
+                                                        <td>
+                                                            <%var date = new Date(bookings[i].DateTo);
+                                    var dateFrom = date.toISOString().slice(0,10) %>
+                                                                <%=dateFrom%>
+                                                        </td>
+                                                        <td>
+                                                            <%=bookings[i].TotalDay %>
+                                                        </td>
+                                                        <td>
+                                                            $
+                                                            <%=totalPrice%>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-outline-danger btn-sm rowButton deleteBooking"><i
+                                    class="fa fa-trash"></i></button>
+                                                            <button type="button" class="btn btn-outline-warning btn-sm rowButton mr-2 editBooking"><i
+                                    class="fa fa-edit"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                    <% }%>
+                </tbody>
+            </table>
+        </div>
+
+        <p id="avaliableRoomData" style="display: none;">
+            <%=avaliableRooms.length%>
+        </p>
+        <p id="hotelUrl" style="display: none;">
+            <%=hotelurl%>
+        </p>
+
+
+
+        <script type="text/javascript" src="/js/bookings.js"></script>
+        <%- include('./partials/footer'); -%>

@@ -1,0 +1,19 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(51, 58, 65);
+    color: white;
+    text-align: center;
+    margin-top: 10px !important;
+    height: 5%;
+}
+
+.footer p {
+    padding-top: 0.7%;
+}
+
+.footer pre {
+    color: white;
+}

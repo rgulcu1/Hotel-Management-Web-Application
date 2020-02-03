@@ -1,0 +1,144 @@
+<%- include('./partials/header'); -%>
+    <%var hotelurl= hotelName.replace(" ","-") %>
+        <%console.log(agents) %>
+            <div class="tableContainer">
+                <a href="/hotel/<%=hotelurl%>"><button class="btn btn-primary" style="margin-left: 3%;">
+            < Back</button> <br></a>
+                <h1 style="margin: 5%;">Guest Customers of
+                    <%=hotelName %>
+                </h1>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Customer ID</th>
+                            <th scope="col">Hotel Name</th>
+                            <th scope="col">Count of Customer</th>
+                            <th scope="col">Customer Names</th>
+                            <th scope="col">Booking Way</th>
+                            <th width="15%" scope="col"><a href="/hotel/<%=hotelurl%>/customers/add"><button id="addGuestBtn"
+                            class="btn btn-primary btn-sm" style="float: right;">Add
+                            Customer</button></a></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% var counter2 = 0; %>
+                            <% var guestCustomerNames = [];%>
+                                <% for(i = 0 ; i<guests.length ; i++){ %>
+                                    <% guestCustomerNames[counter2]=""; var counter1 = 0;%>
+                                        <% for(j = 0 ; j<guests.length ; j++ ) { %>
+                                            <% if(guests[i].GuestCustomerID == guests[j].GuestCustomerID){ %>
+                                                <% guestCustomerNames[counter2] += guests[j].FullName + ", "; %>
+                                                    <%   counter1++}}%>
+                                                        <% guestCustomerNames[counter2]=guestCustomerNames[counter2].substr(0,guestCustomerNames[counter2].length-2) %>
+
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    <%=(i+1)%>
+                                                                </th>
+                                                                <td>
+                                                                    <%=guests[i].GuestCustomerID %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=guests[i].HotelName %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=guests[i].CountOfCustomer %>
+                                                                </td>
+
+                                                                <td>
+                                                                    <%=guestCustomerNames[i] %>
+
+                                                                </td>
+                                                                <td>
+                                                                    <%=guests[i].BookingWay %>
+                                                                </td>
+
+                                                                <td>
+                                                                    <button type="button" class="btn btn-outline-danger btn-sm rowButton deleteCustomer"><i class="fa fa-trash"></i></button>
+                                                                    <button type="button" class="btn btn-outline-warning btn-sm rowButton mr-2 editCustomer"><i  class="fa fa-edit"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                            <% counter2++; i+=(counter1-1); } %>
+                    </tbody>
+                </table>
+
+
+
+                <h1 style="margin: 5%;">Agent Customers of
+                    <%=hotelName %>
+                </h1>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Customer ID</th>
+                            <th width="10%" scope="col">Hotel Name</th>
+                            <th scope="col">Count of Customer</th>
+                            <th scope="col">Customer Names</th>
+                            <th scope="col">Agent Name</th>
+                            <th scope="col">Agent WebSite</th>
+                            <th width="15%" scope="col"><a href="/hotel/<%=hotelurl%>/customers/add"><button id="addAgentBtn"
+                                class="btn btn-primary btn-sm" style="float: right;">Add
+                                Customer</button></a></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% var counter2 = 0; %>
+                            <% var agentCustomerNames = [];%>
+                                <% for(i = 0 ; i<agents.length ; i++){ %>
+                                    <% agentCustomerNames[counter2]=""; var counter1 = 0;%>
+                                        <% for(j = 0 ; j<agents.length ; j++ ) { %>
+                                            <% if(agents[i].AgentCustomerID == agents[j].AgentCustomerID){ %>
+                                                <% agentCustomerNames[counter2] += agents[j].FullName + ", "; %>
+                                                    <%   counter1++}}%>
+                                                        <% agentCustomerNames[counter2]=agentCustomerNames[counter2].substr(0,agentCustomerNames[counter2].length-2) %>
+
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    <%=(i+1)%>
+                                                                </th>
+                                                                <td>
+                                                                    <%=agents[i].AgentCustomerID %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=agents[i].HotelName %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=agents[i].CountOfCustomer %>
+                                                                </td>
+
+                                                                <td>
+                                                                    <%=agentCustomerNames[i] %>
+
+                                                                </td>
+                                                                <td>
+                                                                    <%=agents[i].AgentName %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=agents[i].AgentWebsite%>
+                                                                </td>
+
+                                                                <td>
+                                                                    <button type="button" class="btn btn-outline-danger btn-sm rowButton deleteCustomer"><i class="fa fa-trash"></i></button>
+                                                                    <button type="button" class="btn btn-outline-warning btn-sm rowButton mr-2 editCustomer"><i  class="fa fa-edit"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                            <% counter2++; i+=(counter1-1); } %>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+            <p id="hotelUrl" style="display: none;">
+                <%=hotelurl%>
+            </p>
+
+
+
+            <script type="text/javascript" src="/js/customers.js"></script>
+            <%- include('./partials/footer'); -%>

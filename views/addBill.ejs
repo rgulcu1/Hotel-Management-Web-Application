@@ -1,0 +1,57 @@
+<%- include('./partials/header'); -%>
+    <% var hotelUrl=hotelName.replace(" ","-"); %>
+        <a href="/hotel/<%=hotelUrl%>/bills"><button class="btn btn-primary" style="margin-left: 3%; margin-top: 3%;">
+        < Back</button> <br></a>
+        <h1 style="margin-left: 11%; margin-top:2% "> Add Bill to
+            <%=hotelName %>
+        </h1>
+        <div class="container p-4" style="margin-top:60px; margin-bottom:120px; border: 1px solid black; border-radius: 10px; box-shadow:5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);">
+            <form id="myform">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputBookingID">Select Booking ID</label>
+                        <select name="inputBookingID" id="inputBookingID" class="form-control required" required>
+                    <option disabled selected value style="display:none;">Select</option>
+                    <%  var lastAddded="" %>
+                    <% for(i = 0 ; i<bookings.length ; i++ ) { %>
+                    <%if(lastAddded == bookings[i].BookingID ){ continue;}%>
+                    <option><%= bookings[i].BookingID %></option>
+                    <%lastAddded = bookings[i].BookingID %>
+                    <% } %>
+                </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPaymentType">Select Payment Type</label>
+                        <select name="inputPaymentType" id="inputPaymentType" class="form-control required" required>
+                    <option disabled selected value style="display:none;">Select</option>
+                    <option>Credit Card</option>
+                    <option>Cash</option>
+                    <option>PayPal</option>
+                    <option>Bank Transfer</option>
+                </select>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputBillDesc">Bill Description</label>
+                        <textarea class="form-control " id="inputBillDesc" name="inputBillDesc" rows="3"></textarea>
+                    </div>
+                </div>
+
+
+            </form>
+            <button type="submit" id="billSubmitBtn" class="btn btn-primary">Add</button>
+        </div>
+
+
+
+        <p id="hotelUrl" style="display: none;">
+            <%=hotelUrl %>
+        </p>
+
+
+
+        <script type="text/javascript" src="/js/addBill.js"></script>
+        <%- include('./partials/footer'); -%>

@@ -1,0 +1,55 @@
+<%- include('./partials/header'); -%>
+    <% var hotelUrl=hotelName.replace(" ","-"); %>
+        <a href="/hotel/<%=hotelUrl%>/jobAssignments"><button class="btn btn-primary" style="margin-left: 3%; margin-top: 3%;">
+        < Back</button> <br></a>
+        <h1 style="margin-left: 11%; margin-top:2% "> Add JobAssignment on
+            <%=hotelName %>
+        </h1>
+        <div class="container p-4" style="margin-top:60px; margin-bottom:120px; border: 1px solid black; border-radius: 10px; box-shadow:5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);">
+            <form id="myform">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputRoomNumber">Select Room</label>
+                        <select name="inputRoomNumber" id="inputRoomNumber" class="form-control required" required>
+                    <option disabled selected value style="display:none;">Select</option>
+                    <% for(i = 0 ; i<rooms.length ; i++ ) { %>
+                    <option><%= rooms[i].RoomNumber %></option>
+                    <% } %>
+                </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputStaff">Select Staff</label>
+                        <select name="inputStaff" id="inputStaff" class="form-control required" required>
+                    <option disabled selected value style="display:none;">Select</option>
+                    <% for(i = 0 ; i<staffs.length ; i++ ) { %>
+                    <option><%= staffs[i].FullName %> -- <%=staffs[i].PositionName %></option>
+                    <% } %>
+                </select>
+                    </div>
+
+                </div>
+            </form>
+            <button type="submit" id="assignSubmitBtn" class="btn btn-primary">Add</button>
+        </div>
+
+        <select name="inputRoomID" id="inputRoomID" class="form-control" style="display: none;">
+    <option disabled selected value style="display:none;">Select</option>
+    <% for(i = 0 ; i<rooms.length ; i++ ) { %>
+    <option><%= rooms[i].RoomID %></option>
+    <% } %>
+</select>
+        <select name="inputStaffID" id="inputStaffID" class="form-control" style="display: none;">
+    <option disabled selected value style="display:none;">Select</option>
+    <% for(i = 0 ; i<staffs.length ; i++ ) { %>
+    <option><%= staffs[i].StaffID %></option>
+    <% } %>
+</select>
+
+        <p id="hotelUrl" style="display: none;">
+            <%=hotelUrl %>
+        </p>
+
+
+
+        <script type="text/javascript" src="/js/addJobAssignment.js"></script>
+        <%- include('./partials/footer'); -%>

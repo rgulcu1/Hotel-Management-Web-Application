@@ -1,0 +1,75 @@
+<%- include('./partials/header'); -%>
+    <%var hotelurl= hotelName.replace(" ","-") %>
+        <div class="tableContainer">
+            <a href="/hotel/<%=hotelurl%>"><button class="btn btn-primary" style="margin-left: 3%;">
+            < Back</button> <br></a>
+            <h1 style="margin: 5%;">Rooms of
+                <%=hotelName %>
+            </h1>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th width="8%" scope="col">Room ID</th>
+                        <th width="10%" scope="col">Hotel Name</th>
+                        <th scope="col">Room Number</th>
+                        <th scope="col">Room Floor</th>
+                        <th width="11%" scope="col">Room Type</th>
+                        <th width="43%" scope="col">Description</th>
+                        <th scope="col">Room Status</th>
+                        <th width="10%" scope="col"><a href="/hotel/<%=hotelurl%>/rooms/add"><button id="addRoomBtn" class="btn btn-primary btn-sm"
+                                    style="float: right;">Add
+                                    Room</button></a></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(i = 0 ; i<rooms.length ; i++){ %>
+                        <tr>
+                            <th scope="row">
+                                <%=(i+1)%>
+                            </th>
+                            <td>
+                                <%=rooms[i].RoomID %>
+                            </td>
+                            <td>
+                                <%=rooms[i].HotelName %>
+                            </td>
+                            <td>
+                                <%=rooms[i].RoomNumber %>
+                            </td>
+                            <td>
+                                <%=rooms[i].RoomFloor %>
+
+                            </td>
+                            <td>
+                                <%=rooms[i].RoomTypeName %>
+
+                            </td>
+                            <td>
+                                <%=rooms[i].RoomDescription %>
+                            </td>
+                            <td>
+                                <%=rooms[i].RoomStatus %>
+
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger btn-sm rowButton deleteRoom"><i
+                                    class="fa fa-trash"></i></button>
+                                <button type="button" class="btn btn-outline-warning btn-sm rowButton mr-2 editRoom"><i
+                                    class="fa fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <% }%>
+                </tbody>
+            </table>
+        </div>
+
+        <p id="hotelUrl" style="display: none;">
+            <%=hotelurl%>
+        </p>
+
+
+
+        <script type="text/javascript" src="/js/rooms.js"></script>
+        <%- include('./partials/footer'); -%>

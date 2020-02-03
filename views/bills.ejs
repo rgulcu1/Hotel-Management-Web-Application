@@ -1,0 +1,72 @@
+<%- include('./partials/header'); -%>
+    <%var hotelurl= hotelName.replace(" ","-") %>
+        <div class="tableContainer">
+            <a href="/hotel/<%=hotelurl%>"><button class="btn btn-primary" style="margin-left: 3%;">
+            < Back</button> <br></a>
+            <h1 style="margin: 5%;">Bills of
+                <%=hotelName %>
+            </h1>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Bill No</th>
+                        <th scope="col">Hotel Name</th>
+                        <th scope="col">Booking ID</th>
+                        <th scope="col">Payment Type</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Description</th>
+                        <th width="10%" scope="col"><a href="/hotel/<%=hotelurl%>/bills/add"><button id="addBillBtn" class="btn btn-primary btn-sm"
+                                    style="float: right;">Add
+                                    Bill</button></a></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(i = 0 ; i<bills.length ; i++){ %>
+                        <tr>
+                            <th scope="row">
+                                <%=(i+1)%>
+                            </th>
+                            <td>
+                                <%=bills[i].BillNo %>
+                            </td>
+                            <td>
+                                <%=bills[i].HotelName %>
+                            </td>
+                            <td>
+                                <%=bills[i].BookingID %>
+                            </td>
+                            <td>
+                                <%=bills[i].PaymentType %>
+                            </td>
+                            <td>
+                                $
+                                <%=bills[i].BillAmount %>
+
+                            </td>
+                            <td>
+                                <%=bills[i].BillDescription %>
+
+                            </td>
+
+                            <td>
+                                <button type="button" class="btn btn-outline-danger btn-sm rowButton deleteBill"><i
+                                    class="fa fa-trash"></i></button>
+                                <button type="button" class="btn btn-outline-warning btn-sm rowButton mr-2 editBill"><i
+                                    class="fa fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <% }%>
+                </tbody>
+            </table>
+        </div>
+
+        <p id="hotelUrl" style="display: none;">
+            <%=hotelurl%>
+        </p>
+
+
+
+        <script type="text/javascript" src="/js/bills.js"></script>
+        <%- include('./partials/footer'); -%>

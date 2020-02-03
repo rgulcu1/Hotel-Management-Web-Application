@@ -1,0 +1,91 @@
+<%- include('./partials/header'); -%>
+    <%var hotelurl= hotelName.replace(" ","-") %>
+        <div class="tableContainer">
+            <a href="/hotel/<%=hotelurl%>"><button class="btn btn-primary" style="margin-left: 3%;">
+            < Back</button> <br></a>
+            <h1 style="margin: 5%;">Staffs of
+                <%=hotelName %>
+            </h1>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Staff ID</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Hotel Name</th>
+                        <th scope="col">Full Name</th>
+                        <th width="10%" scope="col">ID Number</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Country</th>
+                        <th width="13%" scope="col">Phone Number</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"><a href="/hotel/<%=hotelurl%>/staffs/add"><button id="addStaffBtn" class="btn btn-primary btn-sm"
+                                    style="float: right;">Add
+                                    Staff</button></a></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(i = 0 ; i<staffs.length ; i++){ %>
+                        <tr>
+                            <th scope="row">
+                                <%=(i+1)%>
+                            </th>
+                            <td>
+                                <%=staffs[i].StaffID%>
+                            </td>
+                            <td>
+                                <%=staffs[i].PositionName%>
+                            </td>
+                            <td>
+                                <%=staffs[i].HotelName%>
+                            </td>
+                            <td>
+                                <%=staffs[i].FullName%>
+
+                            </td>
+                            <td>
+                                <%=staffs[i].IdentifacitonNumber %>
+
+                            </td>
+                            <td>
+                                <%=staffs[i].Gender %>
+                            </td>
+                            <td>
+                                <%=staffs[i].City %>
+
+                            </td>
+                            <td>
+                                <%=staffs[i].Country %>
+
+                            </td>
+                            <td>
+                                <%=staffs[i].PhoneNumber %>
+
+                            </td>
+                            <td>
+                                <%=staffs[i].StaffStatus %>
+
+                            </td>
+
+                            <td>
+                                <button type="button" class="btn btn-outline-danger btn-sm rowButton fireStaff"><i
+                                    class="fa fa-trash"></i></button>
+                                <button type="button" class="btn btn-outline-warning btn-sm rowButton mr-2 editStaff"><i
+                                    class="fa fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <% }%>
+                </tbody>
+            </table>
+        </div>
+
+        <p id="hotelUrl" style="display: none;">
+            <%=hotelurl%>
+        </p>
+
+
+
+        <script type="text/javascript" src="/js/staffs.js"></script>
+        <%- include('./partials/footer'); -%>
